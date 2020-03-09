@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8C733D4E2416F9F100714C39 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C733D4D2416F9F100714C39 /* main.cpp */; };
+		8C733D5A2416FA7200714C39 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C733D572416FA7200714C39 /* main.cpp */; };
+		8C733D5B2416FA7200714C39 /* proj5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C733D582416FA7200714C39 /* proj5.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +25,12 @@
 
 /* Begin PBXFileReference section */
 		8C733D4A2416F9F100714C39 /* Proj5 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Proj5; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C733D4D2416F9F100714C39 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		8C733D542416FA7200714C39 /* runtimeexcept.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = runtimeexcept.hpp; sourceTree = "<group>"; };
+		8C733D552416FA7200714C39 /* MyPriorityQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MyPriorityQueue.hpp; sourceTree = "<group>"; };
+		8C733D562416FA7200714C39 /* edge.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = edge.hpp; sourceTree = "<group>"; };
+		8C733D572416FA7200714C39 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		8C733D582416FA7200714C39 /* proj5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = proj5.cpp; sourceTree = "<group>"; };
+		8C733D592416FA7200714C39 /* proj5.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = proj5.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +63,12 @@
 		8C733D4C2416F9F100714C39 /* Proj5 */ = {
 			isa = PBXGroup;
 			children = (
-				8C733D4D2416F9F100714C39 /* main.cpp */,
+				8C733D562416FA7200714C39 /* edge.hpp */,
+				8C733D572416FA7200714C39 /* main.cpp */,
+				8C733D552416FA7200714C39 /* MyPriorityQueue.hpp */,
+				8C733D582416FA7200714C39 /* proj5.cpp */,
+				8C733D592416FA7200714C39 /* proj5.hpp */,
+				8C733D542416FA7200714C39 /* runtimeexcept.hpp */,
 			);
 			path = Proj5;
 			sourceTree = "<group>";
@@ -119,7 +130,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C733D4E2416F9F100714C39 /* main.cpp in Sources */,
+				8C733D5B2416FA7200714C39 /* proj5.cpp in Sources */,
+				8C733D5A2416FA7200714C39 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
