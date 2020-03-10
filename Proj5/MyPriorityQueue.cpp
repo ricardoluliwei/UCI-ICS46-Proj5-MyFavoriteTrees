@@ -72,4 +72,19 @@ void MyPriorityQueue<Object>::extractMin()
 }
 
 
-
+template<typename Object>
+void MyPriorityQueue<Object>::sink(int index){
+    if (index * 2 > size())
+        return;
+    
+    int smaller = minHeap[index * 2];
+    
+    if (index * 2 + 1 <= size() )
+        smaller = minHeap[index * 2] < minHeap[index * 2 + 1] ? index * 2 : index * 2 + 1;
+    
+    
+    if (minHeap[index] > minHeap[smaller]) {
+        swap(index, smaller);
+        return sink(smaller);
+    }
+}

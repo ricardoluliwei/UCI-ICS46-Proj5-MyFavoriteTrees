@@ -20,10 +20,11 @@ private:
 	// fill in private member data here
     std::vector<Object> minHeap;
 
+    
+public:
     void swap(int i, int j);
     void sink(int index);
     void floating(int index);
-public:
 
 	// You also need a constructor and a destructor.
     MyPriorityQueue();
