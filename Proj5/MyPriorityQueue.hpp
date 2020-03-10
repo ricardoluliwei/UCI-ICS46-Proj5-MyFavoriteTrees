@@ -12,21 +12,17 @@ public:
 
 
 
-
 template<typename Object>
 class MyPriorityQueue
 {
 private:
-	// fill in private member data here
     std::vector<Object> minHeap;
-
+    void swap(size_t i, size_t j); //swap two element
+    void sink(size_t index); //sink the element at index
+    void floating(size_t index); //float the element at index
     
 public:
-    void swap(int i, int j);
-    void sink(int index);
-    void floating(int index);
 
-	// You also need a constructor and a destructor.
     MyPriorityQueue();
     ~MyPriorityQueue();
 
@@ -46,6 +42,120 @@ public:
 	void extractMin(); 
 
 };
+
+
+
+template<typename Object>
+MyPriorityQueue<Object>::MyPriorityQueue(){
+    minHeap.push_back(Object());
+}
+
+
+
+template<typename Object>
+MyPriorityQueue<Object>::~MyPriorityQueue(){
+    minHeap.clear();
+}
+
+
+
+template<typename Object>
+size_t MyPriorityQueue<Object>::size() const noexcept
+{
+    return minHeap.size() - 1;
+}
+
+
+
+template<typename Object>
+bool MyPriorityQueue<Object>::isEmpty() const noexcept
+{
+    return minHeap.size() == 1;
+}
+
+
+
+template<typename Object>
+void MyPriorityQueue<Object>::insert(const Object & elem)
+{
+    minHeap.push_back(elem);
+    floating(size());
+}
+
+
+
+template<typename Object>
+const Object & MyPriorityQueue<Object>::min() const
+{
+    if (isEmpty())
+        throw PriorityQueueEmptyException("Priority Queue is empty!");
+    
+    return minHeap[1];
+}
+
+
+
+template<typename Object>
+void MyPriorityQueue<Object>::extractMin()
+{
+    if (isEmpty())
+        throw PriorityQueueEmptyException("Priority Queue is empty!");
+    
+    minHeap[1] = minHeap[size()];
+    minHeap.pop_back();
+    sink(1);
+}
+
+
+
+template<typename Object>
+void MyPriorityQueue<Object>::swap(size_t i, size_t j)
+{
+    Object temp = minHeap[i];
+    minHeap[i] = minHeap[j];
+    minHeap[j] = temp;
+    return;
+    
+}
+
+
+//sink the element minHeap[index]
+template<typename Object>
+void MyPriorityQueue<Object>::sink(size_t index){
+    if (index * 2 > size())
+        return;
+    
+    size_t smaller = index * 2;
+    
+    if (index * 2 + 1 <= size() )
+        smaller = minHeap[index * 2] < minHeap[index * 2 + 1] ? index * 2 : index * 2 + 1;
+    
+    
+    if (minHeap[index] > minHeap[smaller]) {
+        swap(index, smaller);
+        return sink(smaller);
+    }
+    
+}
+
+
+
+template<typename Object>
+void MyPriorityQueue<Object>::floating(size_t index)
+{
+    if (size() == 1)
+        return;
+    
+    for (size_t i = index; i > 1; i /= 2)
+    {
+        if (minHeap[i] < minHeap[i/2])
+            swap(i, i/2);
+        else
+            break;
+    }
+    
+}
+
 
 
 #endif

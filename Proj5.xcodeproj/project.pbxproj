@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8C733D5A2416FA7200714C39 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C733D572416FA7200714C39 /* main.cpp */; };
 		8C733D5B2416FA7200714C39 /* proj5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C733D582416FA7200714C39 /* proj5.cpp */; };
-		8C733D5D2417250800714C39 /* MyPriorityQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C733D5C2417250800714C39 /* MyPriorityQueue.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,7 +31,6 @@
 		8C733D572416FA7200714C39 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8C733D582416FA7200714C39 /* proj5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = proj5.cpp; sourceTree = "<group>"; };
 		8C733D592416FA7200714C39 /* proj5.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = proj5.hpp; sourceTree = "<group>"; };
-		8C733D5C2417250800714C39 /* MyPriorityQueue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyPriorityQueue.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +66,6 @@
 				8C733D562416FA7200714C39 /* edge.hpp */,
 				8C733D572416FA7200714C39 /* main.cpp */,
 				8C733D552416FA7200714C39 /* MyPriorityQueue.hpp */,
-				8C733D5C2417250800714C39 /* MyPriorityQueue.cpp */,
 				8C733D582416FA7200714C39 /* proj5.cpp */,
 				8C733D592416FA7200714C39 /* proj5.hpp */,
 				8C733D542416FA7200714C39 /* runtimeexcept.hpp */,
@@ -135,7 +132,6 @@
 			files = (
 				8C733D5B2416FA7200714C39 /* proj5.cpp in Sources */,
 				8C733D5A2416FA7200714C39 /* main.cpp in Sources */,
-				8C733D5D2417250800714C39 /* MyPriorityQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

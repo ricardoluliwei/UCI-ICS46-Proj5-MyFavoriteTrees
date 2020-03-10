@@ -8,24 +8,28 @@ using namespace std;
 
 void testPriorityQueue(){
     MyPriorityQueue<int> a;
-    for (int i = 0; i < 10000; i++) {
-        a.insert(rand() % 5000);
+    int size = 100000;
+    assert(a.isEmpty());
+    assert(a.size() == 0);
+    
+    for (int i = 0; i < size; i++) {
+        a.insert(rand() % (size/2));
     }
     
-    int max = -1;
+    assert(!a.isEmpty());
+    assert(a.size() == size);
     
-    for (int i = 0; i < 10000; i++) {
-        int head = a.min();
-        if (head < max) {
-            cout << "Error" << endl;
-            return;
-        }
-        max = head;
+    int previous = -1;
+    
+    for (int i = 0; i < size; i++) {
+        assert(previous <= a.min());
+        previous = a.min();
         a.extractMin();
     }
     
-    cout << a.isEmpty() << endl;
-    cout << (a.size() == 0) << endl;
+    assert(a.isEmpty());
+    assert(a.size() == 0);
+    
     cout << "Pass test" << endl;
 }
 
