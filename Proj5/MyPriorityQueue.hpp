@@ -2,6 +2,7 @@
 #define __PROJ5_PRIORITY_QUEUE_HPP
 
 #include "runtimeexcept.hpp"
+#include <vector>
 
 class PriorityQueueEmptyException : public RuntimeException 
 {
@@ -17,15 +18,17 @@ class MyPriorityQueue
 {
 private:
 	// fill in private member data here
-	Object o; // this is only here for use in a stub, you probably want to delete this.
+    std::vector<Object> minHeap;
 
-
+    void swap(int i, int j);
+    void sink(int index);
+    void floating(int index);
 public:
 
 	// You also need a constructor and a destructor.
 
 
- 	size_t size() const noexcept;
+    size_t size() const noexcept;
 	bool isEmpty() const noexcept;
 
 	void insert(const Object & elem);
@@ -45,40 +48,3 @@ public:
 
 #endif
 
-
-template<typename Object>
-size_t MyPriorityQueue<Object>::size() const noexcept
-{
-	return 500; // stub
-}
-
-
-
-template<typename Object>
-bool MyPriorityQueue<Object>::isEmpty() const noexcept
-{
-	return true; // stub
-}
-
-template<typename Object>
-void MyPriorityQueue<Object>::insert(const Object & elem) 
-{
-	// stub
-}
-
-
-
-
-template<typename Object>
-const Object & MyPriorityQueue<Object>::min() const
-{
-	return o; // terrible idea, don't actually do this.
-}
-
-
-
-template<typename Object>
-void MyPriorityQueue<Object>::extractMin() 
-{
-	// stub
-}
