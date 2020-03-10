@@ -1,6 +1,6 @@
 #include "proj5.hpp"
 #include "edge.hpp"
-#include "MyPriorityQueue.cpp"
+#include "MyPriorityQueue.hpp"
 #include <iostream>
 #include <random>
 
