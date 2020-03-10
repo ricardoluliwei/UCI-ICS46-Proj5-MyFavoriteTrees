@@ -42,9 +42,20 @@ void MyPriorityQueue<Object>::sink(int index)
             i = i*2+1;
         }
         else
+            //current node larger than both right and left
         {
-            if (<#condition#>) {
-                <#statements#>
+            if ((minHeap[i*2] > minHeap[i*2+1]))
+                //current node's left child larger than right child
+            {
+                swap(i, i*2+1);
+                i = i*2+1;
+            }
+            else
+                //current node's left child smaller than right child
+            {
+                swap(i, i*2);
+                i = i*2;
+
             }
         }
     }
