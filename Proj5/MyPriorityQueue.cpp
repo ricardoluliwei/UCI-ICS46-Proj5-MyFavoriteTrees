@@ -9,6 +9,18 @@
 #include "MyPriorityQueue.hpp"
 
 template<typename Object>
+MyPriorityQueue<Object>::MyPriorityQueue(){
+    minHeap.push_back(new Object);
+}
+
+
+template<typename Object>
+MyPriorityQueue<Object>::~MyPriorityQueue(){
+    minHeap.clear();
+}
+
+
+template<typename Object>
 size_t MyPriorityQueue<Object>::size() const noexcept
 {
     return minHeap.size() - 1; // stub
@@ -19,13 +31,16 @@ size_t MyPriorityQueue<Object>::size() const noexcept
 template<typename Object>
 bool MyPriorityQueue<Object>::isEmpty() const noexcept
 {
-    return minHeap.empty(); // stub
+    return minHeap.size() == 1; // stub
 }
+
+
 
 template<typename Object>
 void MyPriorityQueue<Object>::insert(const Object & elem)
 {
-    
+    minHeap.push_back(elem);
+    floating(size());
 }
 
 
@@ -34,6 +49,11 @@ void MyPriorityQueue<Object>::insert(const Object & elem)
 template<typename Object>
 const Object & MyPriorityQueue<Object>::min() const
 {
+    if (isEmpty()){
+        throw PriorityQueueEmptyException("Priority Queue is empty!");
+        return NULL;
+    }
+    
     return minHeap[1];
 }
 
@@ -42,6 +62,14 @@ const Object & MyPriorityQueue<Object>::min() const
 template<typename Object>
 void MyPriorityQueue<Object>::extractMin()
 {
-    
+    if (isEmpty()){
+           throw PriorityQueueEmptyException("Priority Queue is empty!");
+           return;
+    }
+    minHeap[1] = minHeap[size()];
+    minHeap.pop_back();
+    sink(1);
 }
+
+
 

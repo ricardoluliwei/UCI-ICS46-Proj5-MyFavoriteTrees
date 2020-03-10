@@ -26,7 +26,8 @@ private:
 public:
 
 	// You also need a constructor and a destructor.
-
+    MyPriorityQueue();
+    ~MyPriorityQueue();
 
     size_t size() const noexcept;
 	bool isEmpty() const noexcept;
