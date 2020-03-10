@@ -58,7 +58,7 @@ MyPriorityQueue<Object>::~MyPriorityQueue(){
 }
 
 
-
+//return the size of the PriorityQueue
 template<typename Object>
 size_t MyPriorityQueue<Object>::size() const noexcept
 {
@@ -107,7 +107,7 @@ void MyPriorityQueue<Object>::extractMin()
 }
 
 
-
+//swap two elements
 template<typename Object>
 void MyPriorityQueue<Object>::swap(size_t i, size_t j)
 {
@@ -122,16 +122,22 @@ void MyPriorityQueue<Object>::swap(size_t i, size_t j)
 //sink the element minHeap[index]
 template<typename Object>
 void MyPriorityQueue<Object>::sink(size_t index){
-    if (index * 2 > size())
+    //if left child does not exist, we are done
+    if (size() < 2 * index)
         return;
     
-    size_t smaller = index * 2;
+    //the smaller one of left child and right child
+    size_t smaller = 2 * index;
     
-    if (index * 2 + 1 <= size() )
-        smaller = minHeap[index * 2] < minHeap[index * 2 + 1] ? index * 2 : index * 2 + 1;
+    //right child exist
+    if (index * 2 < size()){
+        if (minHeap[2 * index + 1] < minHeap[2 * index]) {
+            smaller = 2 * index + 1;
+        }
+    }
     
-    
-    if (minHeap[index] > minHeap[smaller]) {
+    //if the smaller child is smaller than the parent, swap them
+    if (minHeap[smaller] < minHeap[index]) {
         swap(index, smaller);
         return sink(smaller);
     }
@@ -143,9 +149,7 @@ void MyPriorityQueue<Object>::sink(size_t index){
 template<typename Object>
 void MyPriorityQueue<Object>::floating(size_t index)
 {
-    if (size() == 1)
-        return;
-    
+    //if it's smaller than its parent, swap them
     for (size_t i = index; i > 1; i /= 2)
     {
         if (minHeap[i] < minHeap[i/2])
@@ -153,7 +157,6 @@ void MyPriorityQueue<Object>::floating(size_t index)
         else
             break;
     }
-    
 }
 
 
