@@ -2,7 +2,6 @@
 #include "MyPriorityQueue.hpp"
 #include <limits.h>
 
-#include <iostream>
 
 // As a reminder, for this project, edges have positive cost, g[i][j] = 0 means no edge.
 std::vector<Edge> compute_mst(std::vector< std::vector<unsigned>> & graph)
@@ -11,21 +10,30 @@ std::vector<Edge> compute_mst(std::vector< std::vector<unsigned>> & graph)
     std::vector<bool> intree(graph.size());
     MyPriorityQueue<Edge> pq;
     
+    intree[0] = true;
     for (int i = 1; i < graph.size(); i++) {
         intree[i] = false;
-        pq.insert(Edge(0,i,graph[0][i]));
+        if (graph[0][i] != 0) {
+            pq.insert(Edge(0,i,graph[0][i]));
+        }
     }
     
-    intree[0] = true;
+    
     
     for (int i = 0; i < graph.size() - 1; i++) {
         unsigned v = pq.min().pt2;
-        mst.push_back(pq.min());
-        pq.extractMin();
+        if (!intree[v]) {
+            mst.push_back(pq.min());
+            pq.extractMin();
+        } else {
+            i--;
+            pq.extractMin();
+            continue;
+        }
+        
         intree[v] = true;
-        std::cout << v << std::endl;
         for (int j = 0; j < graph.size(); j++) {
-            if (!intree[j]) {
+            if (!intree[j] && graph[v][j] != 0) {
                 pq.insert(Edge(v,j,graph[v][j]));
             }
         }
