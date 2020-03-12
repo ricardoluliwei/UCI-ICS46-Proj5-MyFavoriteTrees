@@ -20,6 +20,9 @@ private:
     void swap(size_t i, size_t j); //swap two element
     void sink(size_t index); //sink the element at index
     void floating(size_t index); //float the element at index
+    size_t parent(size_t i) {return (i - 1) / 2;}
+    size_t leftChild(size_t i) {return 2*i + 1;}
+    size_t rightChild(size_t i) {return 2*i + 2;}
     
 public:
 
@@ -47,7 +50,6 @@ public:
 
 template<typename Object>
 MyPriorityQueue<Object>::MyPriorityQueue(){
-    minHeap.push_back(Object());
 }
 
 
@@ -62,7 +64,7 @@ MyPriorityQueue<Object>::~MyPriorityQueue(){
 template<typename Object>
 size_t MyPriorityQueue<Object>::size() const noexcept
 {
-    return minHeap.size() - 1;
+    return minHeap.size();
 }
 
 
@@ -70,7 +72,7 @@ size_t MyPriorityQueue<Object>::size() const noexcept
 template<typename Object>
 bool MyPriorityQueue<Object>::isEmpty() const noexcept
 {
-    return minHeap.size() == 1;
+    return minHeap.empty();
 }
 
 
@@ -79,7 +81,7 @@ template<typename Object>
 void MyPriorityQueue<Object>::insert(const Object & elem)
 {
     minHeap.push_back(elem);
-    floating(size());
+    floating(size() - 1);
 }
 
 
@@ -90,7 +92,7 @@ const Object & MyPriorityQueue<Object>::min() const
     if (isEmpty())
         throw PriorityQueueEmptyException("Priority Queue is empty!");
     
-    return minHeap[1];
+    return minHeap[0];
 }
 
 
@@ -101,9 +103,9 @@ void MyPriorityQueue<Object>::extractMin()
     if (isEmpty())
         throw PriorityQueueEmptyException("Priority Queue is empty!");
     
-    minHeap[1] = minHeap[size()];
+    minHeap[0] = minHeap[size() - 1];
     minHeap.pop_back();
-    sink(1);
+    sink(0);
 }
 
 
@@ -123,17 +125,16 @@ void MyPriorityQueue<Object>::swap(size_t i, size_t j)
 template<typename Object>
 void MyPriorityQueue<Object>::sink(size_t index){
     //if left child does not exist, we are done
-    if (size() < 2 * index)
+    if (size() - 1 < leftChild(index))
         return;
     
-    //the smaller one of left child and right child
-    size_t smaller = 2 * index;
+    //the smaller one between left child and right child
+    size_t smaller = leftChild(index);
     
     //right child exist
-    if (index * 2 < size()){
-        if (minHeap[2 * index + 1] < minHeap[2 * index]) {
-            smaller = 2 * index + 1;
-        }
+    if (rightChild(index) < size()){
+        if (minHeap[rightChild(index)] < minHeap[leftChild(index)])
+            smaller = rightChild(index);
     }
     
     //if the smaller child is smaller than the parent, swap them
@@ -149,13 +150,12 @@ void MyPriorityQueue<Object>::sink(size_t index){
 template<typename Object>
 void MyPriorityQueue<Object>::floating(size_t index)
 {
-    //if it's smaller than its parent, swap them
-    for (size_t i = index; i > 1; i /= 2)
-    {
-        if (minHeap[i] < minHeap[i/2])
-            swap(i, i/2);
-        else
-            break;
+    if (index == 0)
+        return;
+    
+    if (minHeap[index] < minHeap[parent(index)]) {
+        swap(index, parent(index));
+        return floating(parent(index));
     }
 }
 
