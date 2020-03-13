@@ -6,6 +6,36 @@
 
 using namespace std;
 
+vector<vector<unsigned>> createGraph(int size){
+    vector<vector<unsigned>> graph;
+    for (int i = 0; i < size; i++) {
+        graph.push_back(vector<unsigned>(size));
+    }
+    
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (i == j) {
+                graph[i][j] = 0;
+            } else {
+                int rd = rand() % size + 1;
+                graph[i][j] = rd;
+                graph[j][i] = rd;
+            }
+        }
+    }
+    return graph;
+}
+
+void printGraph(vector<vector<unsigned>> &graph){
+    for (int i = 0; i < graph.size(); i++) {
+        for (int j = 0; j < graph.size(); j++) {
+            cout << graph[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+    
+
 void testPriorityQueue(){
     MyPriorityQueue<Edge> a;
     int size = 100000;
@@ -35,18 +65,8 @@ void testPriorityQueue(){
 
 
 void testMST(){
-    vector<vector<unsigned>> graph = {
-        { 0, 12, 12, 13, 17, 9, 7, 14, 3, 17},
-        { 12, 0, 8, 8, 8, 18, 19, 5, 15, 8},
-        { 12, 8, 0, 12, 15, 19, 17, 12, 9, 8},
-        { 13, 8, 12, 0, 6, 15, 14, 3, 10, 4},
-        { 17, 8, 15, 6, 0, 21, 19, 3, 14, 10},
-        { 9, 18, 19, 15, 21, 0, 11, 18, 10, 11},
-        { 7, 19, 17, 14, 19, 11, 0, 17, 10, 18},
-        { 14, 5, 12, 3, 3, 18, 17, 0, 11, 7},
-        { 3, 15, 9, 10, 14, 10, 10, 11, 0, 14},
-        { 17, 8, 8, 4, 10, 11, 18, 7, 14, 0}
-    };
+    vector<vector<unsigned>> graph = createGraph(5);
+    printGraph(graph);
     
     vector<Edge> mst = compute_mst(graph);
     
